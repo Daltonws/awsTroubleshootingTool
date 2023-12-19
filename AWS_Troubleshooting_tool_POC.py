@@ -68,7 +68,7 @@ def troubleshoot():
     aws_service = data.get('aws_service')
     error_code = data.get('error_code')
     description = data.get('description')
-    api_key = "your_api_key"  # Replace with your actual API key
+    api_key = "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"  # Replace with your actual API key
 
     chat_response = get_chat_response(aws_service, error_code, description, api_key)
     description, recommendations = parse_response(chat_response)
