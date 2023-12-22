@@ -1,30 +1,35 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import requests
 from markupsafe import Markup
 import re
 
 # Initialize the Flask application
 app = Flask(__name__)
+CORS(app)
 
-def get_chat_response(aws_service, error_code, description, api_key):
+def get_chat_response(platform, services, error_code, runtime, error_description, api_key):
     """
     Function to send a request to the OpenAI ChatGPT model.
-    It constructs a message asking for a description of an AWS service error
+    It constructs a message asking for a description of a cloud platform service error
     and recommendations to resolve it.
 
-    :param aws_service: The AWS service encountering the error
+    :param platform: The cloud platform encountering the error (e.g., AWS)
+    :param services: The specific services encountering the error
     :param error_code: The specific error code encountered
-    :param description: A brief description of the issue
+    :param runtime: The runtime environment of the service, if applicable
+    :param error_description: A brief description of the issue
     :param api_key: OpenAI API key for authentication
     :return: The response message from ChatGPT
     """
     url = "https://api.openai.com/v1/chat/completions"
 
-    # Constructing the message to send to ChatGPT
+    service_list = ', '.join(services)
+    runtime_info = f"Runtime: {runtime}\n" if runtime else ""
     prompt_message = (
-        f"I encountered an error with the AWS service {aws_service}.\n"
-        f"Error Code: {error_code}\n"
-        f"Description: {description}\n"
+        f"I encountered an error with {platform} services: {service_list}.\n"
+        f"Error Code: {error_code}\n{runtime_info}"
+        f"Description: {error_description}\n"
         f"Can you provide a description of this error and recommend actions to resolve it?"
     )
 
@@ -49,28 +54,29 @@ def parse_response(response):
     :param response: The response string from ChatGPT
     :return: A tuple containing the error description and the HTML formatted recommendations
     """
-    # Split the response into parts at each numbered item
     parts = re.split(r'\d+\.', response)
     description = parts[0].strip()
-
-    # Reformat the recommendations as an HTML ordered list
     recommendations = '<ol>' + ''.join([f'<li>{part.strip()}</li>' for part in parts[1:]]) + '</ol>'
-
     return description, recommendations
 
 @app.route('/troubleshoot', methods=['POST'])
 def troubleshoot():
     """
-    Flask route to handle POST requests for AWS error troubleshooting.
+    Flask route to handle POST requests for cloud service error troubleshooting.
     It receives the error details, interacts with ChatGPT, and returns an HTML formatted response.
     """
     data = request.json
-    aws_service = data.get('aws_service')
+    platform = data.get('platform')
+    services = data.get('service')
     error_code = data.get('error_code')
-    description = data.get('description')
-    api_key = "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"  # Replace with your actual API key
+    runtime = data.get('runtime')
+    error_description = data.get('error_description')
+    api_key = "<your_api_key>"  # Replace with your actual API key
 
-    chat_response = get_chat_response(aws_service, error_code, description, api_key)
+    if not all([platform, services, error_description]):
+        return jsonify({"error": "Missing required data"}), 400
+
+    chat_response = get_chat_response(platform, services, error_code, runtime, error_description, api_key)
     description, recommendations = parse_response(chat_response)
 
     # Format and return the response as HTML
