@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/awsTroubleshootingTool/static/css/main.5bbdf440.css",
+    "main.js": "/awsTroubleshootingTool/static/js/main.f43c59d6.js",
+    "static/js/787.b875e8fd.chunk.js": "/awsTroubleshootingTool/static/js/787.b875e8fd.chunk.js",
+    "index.html": "/awsTroubleshootingTool/index.html",
+    "main.5bbdf440.css.map": "/awsTroubleshootingTool/static/css/main.5bbdf440.css.map",
+    "main.f43c59d6.js.map": "/awsTroubleshootingTool/static/js/main.f43c59d6.js.map",
+    "787.b875e8fd.chunk.js.map": "/awsTroubleshootingTool/static/js/787.b875e8fd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5bbdf440.css",
+    "static/js/main.f43c59d6.js"
+  ]
+}
