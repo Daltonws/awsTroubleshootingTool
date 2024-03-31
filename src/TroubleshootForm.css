@@ -1,0 +1,114 @@
+.formContainer {
+    background: linear-gradient(to top, #e6f9ff 0%, #ffffff 100%);
+    padding: 50px; /* Increase the padding value to make it bigger */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Increase the max-width to accommodate larger fields */
+    margin: auto;
+    margin-top: 50px;
+    font-family: 'Roboto', sans-serif; /* Change the font to something more modern */
+    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px; /* Increase the margin to add more space */
+    font-size: 24px; /* Increase the font size to make the title more prominent */
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start to align keys and fields */
+    justify-content: center;
+    margin: 30px; /* Increase the margin to add more space */
+}
+
+.input, .textarea {
+    margin: 10px 0; /* Change the margin to only add space above and below */
+    padding: 10px;
+    width: 100%; /* Make the inputs take up the full width of the form */
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    transition: border-color 0.3s ease;
+    font-size: 16px; /* Increase the font size to make the text more readable */
+}
+
+.input:focus, .textarea:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+.button {
+    padding: 10px 20px;
+    margin: 10px 0; /* Change the margin to only add space above and below */
+    border-radius: 5px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: center; /* Center the button horizontally */
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+.required {
+    color: #ff0000;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Make the flexColumn take up the full width of the form */
+}
+
+.textarea {
+    height: 150px; /* Increase the height of the textarea */
+}
+
+.loader {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+.response {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: rgba(234, 242, 248, 0.8); /* Soft blue background with reduced opacity */
+    border-radius: 5px; /* Add rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    padding: 10px; /* Add some padding */
+    border: 1px solid #ddd; /* Grey border */
+    color: #333; /* Dark grey text */
+    font-size: 16px; /* Increase the font size */
+    line-height: 1.5; /* Increase the line height for better readability */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.response:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow on hover */
+}
+
+body {
+    /* Add a background image */
+    background-image: url('https://example.com/path-to-your-image.jpg');
+    /* Or add a background gradient */
+    background: linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb);
+    /* Make sure the image covers the whole screen */
+    background-size: cover;
+    /* Position the image in the center */
+    background-position: center;
+    /* Make sure the image doesn't repeat */
+    background-repeat: no-repeat;
+}
